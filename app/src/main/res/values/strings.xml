@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="endpoint" translatable="false">http://www.omdbapi.com/?apikey=1a855119</string>
+    <string name="searchBox">Movie Title</string>
+    <string name="searchButton">Search</string>
+</resources>
