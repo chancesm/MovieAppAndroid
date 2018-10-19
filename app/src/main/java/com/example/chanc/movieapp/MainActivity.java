@@ -44,16 +44,21 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 //        Glide.with(this).load("https://www.guiamania.com%2Fwp-content%2Fuploads%2F2010%2F08%2F&psig=AOvVaw2VlEQtbLKRsfFoy0O0khJw&ust=1539035921400467").into( (ImageView) findViewById(R.id.testImage));
     }
+    // FUNCTION THAT RUNS WHEN SEARCH BUTTON IS CLICKED
     public void startSearch(View view) {
         final ProgressBar myprogress = findViewById(R.id.search_progress);
         myprogress.setIndeterminate(true);
         EditText searchinput = (EditText) findViewById(R.id.editText);
         final String term = (String) searchinput.getText().toString();
+        // My URL Endpoint
         String url = this.getApplication().getString(R.string.endpoint) + "&t=" + term;
+        // New Activity for the next page
         final Intent nextPage = new Intent(this, movieActivity.class);
         nextPage.putExtra(SEARCHED_TERM, term);
+        // Creating a request with the Volley Library
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest searchRequest = new JsonObjectRequest(Request.Method.GET,url,null,new Response.Listener<JSONObject>() {
+            // Success Callback
             @Override
             public void onResponse(JSONObject response) {
                 Log.i("Response Handler", response.toString());
@@ -80,6 +85,7 @@ public class MainActivity extends Activity {
                         Runtime = "N/A";
                         Plot = "No Movie Found";
                     }
+                    // Send Results to the next activity.
                     nextPage.putExtra(TITLE, Title);
                     nextPage.putExtra(PATH, ImagePath);
                     nextPage.putExtra(RATING, Rated);
