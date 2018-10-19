@@ -15,12 +15,15 @@ public class movieActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
         Intent intent = getIntent();
+        // Grab passed values
         String Title = intent.getStringExtra(MainActivity.TITLE);
         String Plot = intent.getStringExtra(MainActivity.PLOT);
         String Rating = intent.getStringExtra(MainActivity.RATING);
         String Runtime = intent.getStringExtra(MainActivity.RUNTIME);
         String Path = intent.getStringExtra(MainActivity.PATH);
+        // Use Glide library to asynchronously fetch the image from the URL and load it. 
         Glide.with(this).load(Path).into((ImageView) findViewById(R.id.imageView));
+        // Fill the page with data :)
         TextView title = findViewById(R.id.textView);
         TextView rating = findViewById(R.id.textView2);
         TextView plot = findViewById(R.id.textView3);
